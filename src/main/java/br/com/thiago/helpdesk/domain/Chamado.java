@@ -44,6 +44,10 @@ public class Chamado implements Serializable {
 	@JoinColumn(name = "tecnico_id")
 	private Tecnico tecnico;
 
+	public Chamado() {
+		
+	}
+	
 	public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Cliente cliente,
 			Tecnico tecnico) {
 		super();
