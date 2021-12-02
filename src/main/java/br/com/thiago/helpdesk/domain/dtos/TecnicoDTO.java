@@ -1,5 +1,4 @@
 package br.com.thiago.helpdesk.domain.dtos;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -8,33 +7,31 @@ import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.thiago.helpdesk.domain.Tecnico;
 import br.com.thiago.helpdesk.domain.enums.Perfil;
 
-public class TecnicoDTO implements Serializable{
-
+public class TecnicoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	protected Integer id;
-	
 	@NotNull(message = "O campo NOME é requerido")
 	protected String nome;
-	
 	@NotNull(message = "O campo CPF é requerido")
+	@CPF
 	protected String cpf;
-	
 	@NotNull(message = "O campo EMAIL é requerido")
 	protected String email;
-	
 	@NotNull(message = "O campo SENHA é requerido")
 	protected String senha;
 	protected Set<Integer> perfis = new HashSet<>();
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate dataCriacao = LocalDate.now();
-	
+
 	public TecnicoDTO() {
 		super();
 		addPerfil(Perfil.CLIENTE);
@@ -52,8 +49,6 @@ public class TecnicoDTO implements Serializable{
 		addPerfil(Perfil.CLIENTE);
 	}
 
-	
-	
 	public Integer getId() {
 		return id;
 	}
@@ -95,7 +90,7 @@ public class TecnicoDTO implements Serializable{
 	}
 
 	public Set<Perfil> getPerfis() {
-		return  perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
 
 	public void addPerfil(Perfil perfil) {
@@ -109,8 +104,5 @@ public class TecnicoDTO implements Serializable{
 	public void setDataCriacao(LocalDate dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-	
-	
-	
 
 }
