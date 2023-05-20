@@ -60,5 +60,13 @@ public class TecnicoService {
 		}
 	}
 
+	public void delete(Integer id) {
+		Tecnico obj = findById(id);
+		if(obj.getChamados().size() > 0) {
+			throw new DataIntegrityViolationException("Não foi possível deletar o Técnico pois existem chamados registrados em seu nome.");
+		}
+		tecnicoRepository.deleteById(id);
+	}
+
 
 }
