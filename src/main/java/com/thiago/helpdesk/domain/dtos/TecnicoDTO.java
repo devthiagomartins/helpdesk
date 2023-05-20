@@ -6,13 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.thiago.helpdesk.domain.Tecnico;
@@ -23,8 +17,14 @@ public class TecnicoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	protected Integer id;
+	
+	@NotNull(message = "O campo NOME deve ser preenchido.")
 	protected String nome;
+	
+	@NotNull(message = "O campo CPF deve ser preenchido.")
 	protected String cpf;
+	
+	@NotNull(message = "O campo EMAIL deve ser preenchido.")
 	protected String email;
 	protected String senha;
 	protected Set<Integer> perfis = new HashSet<Integer>();
@@ -46,6 +46,7 @@ public class TecnicoDTO implements Serializable {
 		this.senha = obj.getSenha();
 		this.perfis = obj.getPerfis().stream().map(perfil -> perfil.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obj.getDataCriacao();
+		adicionarPerfil(Perfil.TECNICO);
 	}
 
 	public Integer getId() {
