@@ -40,6 +40,7 @@ public class Tecnico extends Pessoa implements Serializable {
 		this.senha = obj.getSenha();
 		this.perfis = obj.getPerfis().stream().map(perfil -> perfil.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obj.getDataCriacao();
+		adicionarPerfil(Perfil.TECNICO);
 	}
 
 	public List<Chamado> getChamados() {
