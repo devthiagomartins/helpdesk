@@ -12,22 +12,31 @@ public class ChamadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
+	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataAbertura = LocalDate.now();
+	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataFechamento;
-	@NotNull(message = "O campo PRIORIDADE é requerido")
+	
+	@NotNull(message = "O campo PRIORIDADE deve ser preenchido")
 	private Integer prioridade;
-	@NotNull(message = "O campo STATUS é requerido")
+	
+	@NotNull(message = "O campo STATUS deve ser preenchido")
 	private Integer status;
-	@NotNull(message = "O campo TITULO é requerido")
+	
+	@NotNull(message = "O campo TÍTULO deve ser preenchido")
 	private String titulo;
-	@NotNull(message = "O campo OBSERVAÇÕES é requerido")
+	
+	@NotNull(message = "O campo OBSERVAÇÕES deve ser preenchido")
 	private String observacoes;
-	@NotNull(message = "O campo TECNICO é requerido")
+	
+	@NotNull(message = "O campo TÉCNICO deve ser preenchido")
 	private Integer tecnico;
-	@NotNull(message = "O campo CLIENTE é requerido")
+	
+	@NotNull(message = "O campo CLIENTE deve ser preenchido")
 	private Integer cliente;
+	
 	private String nomeTecnico;
 	private String nomeCliente;
 
